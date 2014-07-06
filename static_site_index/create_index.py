@@ -7,10 +7,20 @@ JEKYLL_TEMPLATE="""---
 layout: static_site_index
 title: Index of {pathname}
 ---
+<div id="html_index">
 <pre>{preformat_string}
 <hr></pre>
-"""
+</div>
 
+<div id="js_index">
+{angular_template}
+</div>
+
+<script>
+{json_data}
+{js_file}
+</script>
+"""
 
 TEMPLATE="""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <html>
