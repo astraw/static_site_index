@@ -1,5 +1,6 @@
 #!/usr/bin/env python
-import os, re, datetime, json
+from __future__ import print_function
+import os, re, datetime, json, sys
 
 MY_DIR = os.path.split(__file__)[0]
 
@@ -206,5 +207,7 @@ def do_index(filesystem_dirname, parent_link, this_url_path,jekyll=False,recursi
         os.chdir( orig_dir )
 
 if __name__=='__main__':
-    BASE_DIR='debs.strawlab.org'
+    print('create_index called from command line')
+    BASE_DIR = sys.argv[1]
+    print('  BASE_DIR = %r'%BASE_DIR)
     do_index(BASE_DIR,None,'/')
