@@ -16,8 +16,8 @@ TEMPLATE="""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
 <html>
  <head>
   <title>Index of {pathname}</title>
-  <script src="{site_root}js/angular.min.js"></script>
-  <link rel="stylesheet" href="{site_root}css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
  </head>
  <body>
 <h1>Index of {pathname}</h1>
@@ -128,8 +128,6 @@ for (idx in entries.files) {
 
     preformat_string = get_html_table_buf(json_elements)
 
-    depth = pathname.count('/')
-    site_root = '/'.join( ['..']*depth ) + '/'
 
     index_js_fname = os.path.join(MY_DIR,'index.js')
     template_content_fname = os.path.join(MY_DIR,'template.html')
