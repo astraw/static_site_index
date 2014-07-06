@@ -42,7 +42,7 @@ def get_json_data(elements,parent_link):
     json_elements = elements[:] # copy
     if parent_link is not None:
         json_elements.insert(0,{
-            'Name':'Parent Directory',
+            'Name':'.. (Parent Directory)',
             'Link':parent_link,
             'Last_modified':None,
             'Size':None,
