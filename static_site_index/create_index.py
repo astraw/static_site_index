@@ -4,7 +4,7 @@ import os, re, datetime, json
 MY_DIR = os.path.split(__file__)[0]
 
 JEKYLL_TEMPLATE="""---
-layout: default
+layout: static_site_index
 title: Index of {pathname}
 ---
 <pre>{preformat_string}
