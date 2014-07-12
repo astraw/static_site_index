@@ -62,7 +62,7 @@ filters.filter('humanSize', function () {
         if(numBytes==null) return '';
         if(numBytes < 0) return '';
         if(numBytes == 0) return 0;
-        if(numBytes < 1000) return (numBytes + " bytes");
+        if(numBytes < 1024) return (numBytes + " bytes");
         var s = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'];
         var e = Math.floor(Math.log(numBytes) / Math.log(1024));
         return (numBytes / Math.pow(1024, Math.floor(e))).toFixed(2) + " " + s[e];
