@@ -13,7 +13,7 @@ title: Index of {pathname}
 """
 
 
-TEMPLATE="""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+TEMPLATE="""<!DOCTYPE HTML>
 <html>
  <head>
   <title>Index of {pathname}</title>
