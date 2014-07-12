@@ -3,27 +3,27 @@
     <thead>
       <tr>
         <th>
-          <a href="#" ng-click="orderByField='Name'; reverseSort = !reverseSort">
-            Name <span ng-show="orderByField == 'Name'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+          <a href="#" ng-click="orderByField='name'; reverseSort = !reverseSort">
+            Name <span ng-show="orderByField == 'name'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
           </a>
         </th>
         <th>
-          <a href="#" ng-click="orderByField='Last_modified'; reverseSort = !reverseSort">
-            Last Modified <span ng-show="orderByField == 'Last_modified'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+          <a href="#" ng-click="orderByField='lastmodified'; reverseSort = !reverseSort">
+            Last Modified <span ng-show="orderByField == 'lastmodified'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
           </a>
         </th>
         <th>
-          <a href="#" ng-click="orderByField='Size'; reverseSort = !reverseSort">
-          Size <span ng-show="orderByField == 'Size'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+          <a href="#" ng-click="orderByField='size'; reverseSort = !reverseSort">
+          Size <span ng-show="orderByField == 'size'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
           </a>
         </th>
       </tr>
     </thead>
     <tbody>
       <tr ng-repeat="file in data.files|orderBy:orderByField:reverseSort">
-        <td><a href="{{file.Link}}">{{file.Name}}</a></td>
-        <td>{{file.Last_modified | humanDate:'yyyy-MM-dd HH:mm:ss'}}</td>
-        <td>{{file.Size | humanSize}}</td>
+        <td><a href="{{file.link}}">{{file.name}}</a></td>
+        <td>{{file.lastmodified | humanDate:'yyyy-MM-dd HH:mm:ss'}}</td>
+        <td>{{file.size | humanSize}}</td>
       </tr>
     </tbody>
   </table>

@@ -1,3 +1,52 @@
+// -----------------------------------------------
+
+function tableToJson(table) {
+    var data = [];
+
+    /*
+    var headers = [];
+    for (var i=0; i<table.rows[0].cells.length; i++) {
+        headers[i] = table.rows[0].cells[i].innerHTML;
+    }
+    console.assert(headers[0]=='Name');
+    console.assert(headers[1]=='Last modified');
+    console.assert(headers[2]=='Size');
+    */
+
+    for (var i=1; i<table.rows.length; i++) {
+
+        var tableRow = table.rows[i];
+        var name_td=tableRow.cells[0];
+        var link_element = name_td.firstChild;
+        var link = link_element.href;
+        var name = link_element.firstChild.data;
+        var modified_raw_html=tableRow.cells[1].innerHTML;
+        var size_raw_html=tableRow.cells[2].innerHTML;
+
+        var modifiedi = parseFloat(modified_raw_html); // in seconds
+        if (modifiedi >= 0) {
+            modifiedi = new Date(modifiedi*1000); // convert to msec
+        } else {
+            modifiedi = null;
+        }
+        var size = parseInt(size_raw_html);
+        if (isNaN(size)) {
+            size = -1;
+        }
+
+        var rowData = {name:name,
+                       link:link,
+                       lastmodified:modifiedi,
+                       size:size};
+
+        data.push(rowData);
+    }
+
+    return data;
+}
+
+// -----------------------------------------------
+
 var filters = angular.module('filters', []);
 
 filters.filter('humanSize', function () {
@@ -21,10 +70,13 @@ filters.filter('humanDate', function () {
 var app = angular.module('app', ['filters']);
 
 app.controller('MainCtrl', function($scope) {
-  $scope.orderByField = 'Name';
+  var table = document.getElementById("static_site_index_html_table");
+  var json_data = tableToJson(table);
+
+  $scope.orderByField = 'name';
   $scope.reverseSort = false;
 
-  $scope.data = entries;
+  $scope.data = {files:json_data};
 });
 
 
