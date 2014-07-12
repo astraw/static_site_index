@@ -22,12 +22,12 @@ TEMPLATE="""<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
  </head>
  <body>
 <h1>Index of {pathname}</h1>
-<div id="html_index">
+<div id="static_site_index_html_index">
 <pre>{preformat_string}
 <hr></pre>
 </div>
 
-<div id="js_index">
+<div id="static_site_index_js_index">
 {angular_template}
 </div>
 
