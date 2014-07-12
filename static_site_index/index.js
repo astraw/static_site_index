@@ -25,10 +25,10 @@ function tableToJson(table) {
         var link_element = name_td.firstChild;
         var link = link_element.href;
         var name = link_element.firstChild.data;
-        var modified_raw_html=tableRow.cells[MODIFIED].innerHTML;
+        var modified_str=tableRow.cells[MODIFIED].getAttribute("data-mtime");
         var size_raw_html=tableRow.cells[SIZE].innerHTML;
 
-        var modifiedi = parseFloat(modified_raw_html); // in seconds
+        var modifiedi = parseFloat(modified_str); // in seconds
         if (modifiedi >= 0) {
             modifiedi = new Date(modifiedi*1000); // convert to msec
         } else {

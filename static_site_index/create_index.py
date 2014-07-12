@@ -62,7 +62,7 @@ def get_html_table_buf(html_elements):
     tab_fmt = ('<tr>'
                '<td data-faname={fa_name}><i class="fa fa-{fa_name} fa-fw"></i></td>'
                '<td><a href="{link}">{name}</a></td>'
-               '<td>{lastmodified}</td>'
+               '<td data-mtime={lastmodified}>{lastmodified_human}</td>'
                '<td>{size}</td>'
                '</tr>')
 
@@ -78,6 +78,7 @@ def write_index(fname,elements,parent_link,pathname,jekyll=False):
         'name':'.. (Parent Directory)',
         'link':parent_link,
         'lastmodified':INVALID,
+        'lastmodified_human':'',
         'size':INVALID,
         'fa_name':'level-up',
         }] + elements
@@ -98,6 +99,12 @@ def write_index(fname,elements,parent_link,pathname,jekyll=False):
     with open(fname, mode='w') as fd:
         fd.write(buf)
 
+def modtime_str(t):
+    r = datetime.datetime.fromtimestamp(t)
+    fmt = '%d-%b-%Y %H:%M'
+    result = r.strftime(fmt)
+    return result
+
 def make_index(parent_link,pathname,jekyll=False,recursive=True):
     files = os.listdir(os.curdir)
     files.sort()
@@ -113,6 +120,7 @@ def make_index(parent_link,pathname,jekyll=False,recursive=True):
             'name':f,
             'link':link,
             'lastmodified':mtime,
+            'lastmodified_human':modtime_str(mtime),
             'size':sz,
             }
         if os.path.isdir(f):
