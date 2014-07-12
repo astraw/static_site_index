@@ -1,27 +1,32 @@
 // -----------------------------------------------
 
 function tableToJson(table) {
+    var TYPE=0;
+    var NAME=1;
+    var MODIFIED=2;
+    var SIZE=3;
+
     var data = [];
 
-    /*
     var headers = [];
     for (var i=0; i<table.rows[0].cells.length; i++) {
         headers[i] = table.rows[0].cells[i].innerHTML;
     }
-    console.assert(headers[0]=='Name');
-    console.assert(headers[1]=='Last modified');
-    console.assert(headers[2]=='Size');
-    */
+    console.assert(headers[NAME]=='Name');
+    console.assert(headers[MODIFIED]=='Last modified');
+    console.assert(headers[SIZE]=='Size');
 
     for (var i=1; i<table.rows.length; i++) {
 
         var tableRow = table.rows[i];
-        var name_td=tableRow.cells[0];
+
+        var fa_name=tableRow.cells[TYPE].getAttribute("data-faname" );
+        var name_td=tableRow.cells[NAME];
         var link_element = name_td.firstChild;
         var link = link_element.href;
         var name = link_element.firstChild.data;
-        var modified_raw_html=tableRow.cells[1].innerHTML;
-        var size_raw_html=tableRow.cells[2].innerHTML;
+        var modified_raw_html=tableRow.cells[MODIFIED].innerHTML;
+        var size_raw_html=tableRow.cells[SIZE].innerHTML;
 
         var modifiedi = parseFloat(modified_raw_html); // in seconds
         if (modifiedi >= 0) {
@@ -35,6 +40,7 @@ function tableToJson(table) {
         }
 
         var rowData = {name:name,
+                       fa_name:fa_name,
                        link:link,
                        lastmodified:modifiedi,
                        size:size};

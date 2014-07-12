@@ -2,6 +2,7 @@
   <table class="table table-bordered">
     <thead>
       <tr>
+        <th></th>
         <th>
           <a href="#" ng-click="orderByField='name'; reverseSort = !reverseSort">
             Name <span ng-show="orderByField == 'name'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
@@ -21,6 +22,7 @@
     </thead>
     <tbody>
       <tr ng-repeat="file in data.files|orderBy:orderByField:reverseSort">
+        <td><i class="fa fa-{{file.fa_name}} fa-fw"></i></td>
         <td><a href="{{file.link}}">{{file.name}}</a></td>
         <td>{{file.lastmodified | humanDate:'yyyy-MM-dd HH:mm:ss'}}</td>
         <td>{{file.size | humanSize}}</td>

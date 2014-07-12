@@ -20,6 +20,7 @@ TEMPLATE="""<!DOCTYPE HTML>
   <title>Index of {pathname}</title>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
  </head>
  <body>
 <h1>Index of {pathname}</h1>
@@ -43,10 +44,11 @@ def get_html_table_buf(html_elements):
     table_bufs = []
     table_bufs.append('<table id="static_site_index_html_table" class="table table-bordered">')
     table_bufs.append('<tr>' +
-                      '<th>Name</th><th>Last modified</th><th>Size</th>' +
+                      '<th></th><th>Name</th><th>Last modified</th><th>Size</th>' +
                       '</tr>')
 
     tab_fmt = ('<tr>'
+               '<td data-faname={fa_name}><i class="fa fa-{fa_name} fa-fw"></i></td>'
                '<td><a href="{link}">{name}</a></td>'
                '<td>{lastmodified}</td>'
                '<td>{size}</td>'
@@ -65,6 +67,7 @@ def write_index(fname,elements,parent_link,pathname,jekyll=False):
         'link':parent_link,
         'lastmodified':INVALID,
         'size':INVALID,
+        'fa_name':'level-up',
         }] + elements
 
     table_html = get_html_table_buf(html_elements)
@@ -102,7 +105,7 @@ def make_index(parent_link,pathname,jekyll=False,recursive=True):
             }
         if os.path.isdir(f):
             el['name']=el['name']+'/'
-            el['type']='dir'
+            el['fa_name']='folder'
             el['size']=INVALID
             subdir = pathname + '/' + f
             if subdir.startswith('//'):
@@ -112,7 +115,7 @@ def make_index(parent_link,pathname,jekyll=False,recursive=True):
                 if recursive:
                     do_index(f, pathname, subdir, jekyll=jekyll, recursive=recursive)
         elif os.path.isfile(f):
-            el['type']='file'
+            el['fa_name']='file'
         else:
             raise ValueError('unknown dir entry: %r'%f)
         elements.append(el)
