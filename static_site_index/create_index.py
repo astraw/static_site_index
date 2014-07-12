@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from __future__ import print_function
-import os, re, datetime, json, sys
+import os, datetime, json, sys
 
 MY_DIR = os.path.split(__file__)[0]
 
@@ -8,8 +8,7 @@ JEKYLL_TEMPLATE="""---
 layout: default
 title: Index of {pathname}
 ---
-<pre>{preformat_string}
-<hr></pre>
+{table_html}
 """
 
 
@@ -23,8 +22,7 @@ TEMPLATE="""<!DOCTYPE HTML>
  <body>
 <h1>Index of {pathname}</h1>
 <div id="static_site_index_html_index">
-<pre>{preformat_string}
-<hr></pre>
+{table_html}
 </div>
 
 <div id="static_site_index_js_index">
@@ -52,21 +50,9 @@ def get_json_data(elements,parent_link):
     return json_elements
 
 def get_html_table_buf(json_elements):
-    columns = 'Name', 'Last_modified', 'Size'
-
-    # establish minimum column widths
-    widths = {}
-    for colname in columns:
-        widths[colname] = 4
-    widths['Name']=32
-
     html_elements = []
     for element_data in json_elements:
         html_elements.append( element_data.copy() )
-
-    title_dict = dict( [ (n,n) for n in columns ] )
-    title_dict['Link'] = None
-    html_elements.insert(0,title_dict)
 
     # find real widths
     for html_element_data in html_elements:
@@ -79,42 +65,24 @@ def get_html_table_buf(json_elements):
             if isinstance(sz,int):
                 html_element_data['Size'] = size_str(html_element_data['Size'])
 
-        for colname in columns:
-            widths[colname] = max(widths[colname],len(html_element_data[colname]))
+    table_bufs = []
+    table_bufs.append('<table id="static_site_index_html_table" class="table table-bordered">')
+    table_bufs.append('<tr>' +
+                      '<th>Name</th><th>Last modified</th><th>Size</th>' +
+                      '</tr>')
 
-    # write rows
-    fmt_strs = []
-    for colname in columns:
-        if colname=='Size':
-            align_char = '>'
-        else:
-            align_char = '<'
-        this_col = '{%s:%s%d}'%(colname,align_char,widths[colname])
-        if colname == 'Name':
-            more = '<a href="{Link}">%s</a>'%this_col
-            this_col = more
-        fmt_strs.append( this_col )
-    fmt_str = '      '+'  '.join(fmt_strs)
-    rowbufs = []
-    for rowidx,html_element_data in enumerate(html_elements):
-        if rowidx==0:
-            html_element_data['Link']=''
-            linebuf = fmt_str.format(**html_element_data)
-            linebuf = linebuf.replace('<a href="">','')
-            lindebuf = linebuf.replace('</a>','')
-            rowbufs.append( linebuf+'<hr>' )
-        else:
-            rowbufs.append( fmt_str.format(**html_element_data) )
+    tab_fmt = ('<tr>'
+               '<td><a href="{Link}">{Name}</a></td>'
+               '<td>{Last_modified}</td>'
+               '<td>{Size}</td>'
+               '</tr>')
 
-    if 1:
-        # remove linked spaces -----------
-        rowbufs2 = []
-        re_fix = re.compile( r'( +)</a>' )
-        for row in rowbufs:
-            rowbufs2.append( re_fix.sub( r'</a>\1', row ) )
-        rowbufs = rowbufs2
+    for html_element_data in html_elements:
+        table_bufs.append(tab_fmt.format(**html_element_data))
 
-    return '\n'.join(rowbufs)
+    table_bufs.append('</table>')
+
+    return '\n'.join(table_bufs)
 
 def write_index(fname,elements,parent_link,pathname,jekyll=False):
     json_elements = get_json_data(elements,parent_link)
@@ -129,7 +97,7 @@ for (idx in entries.files) {
 """
     json_data = json_data1 + json_data2
 
-    preformat_string = get_html_table_buf(json_elements)
+    table_html = get_html_table_buf(json_elements)
 
 
     index_js_fname = os.path.join(MY_DIR,'index.js')
