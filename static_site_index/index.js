@@ -50,12 +50,15 @@ function tableToJson(table) {
 var filters = angular.module('filters', []);
 
 filters.filter('humanSize', function () {
-    return function (bytes, index) {
-        if(bytes==null) return '';
-        if(bytes <= 0) return 0;
-        var s = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'];
-        var e = Math.floor(Math.log(bytes) / Math.log(1024));
-        return (bytes / Math.pow(1024, Math.floor(e))).toFixed(2) + " " + s[e];
+    return function (numBytes, index) {
+        if(typeof(numBytes)!=='number') return '';
+        if(isNaN(numBytes)) return '';
+        if(numBytes==null) return '';
+        if(numBytes < 0) return '';
+        if(numBytes == 0) return 0;
+        var s = ['numBytes', 'kB', 'MB', 'GB', 'TB', 'PB'];
+        var e = Math.floor(Math.log(numBytes) / Math.log(1024));
+        return (numBytes / Math.pow(1024, Math.floor(e))).toFixed(2) + " " + s[e];
     }
 });
 
