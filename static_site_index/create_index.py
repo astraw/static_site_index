@@ -25,7 +25,7 @@ TEMPLATE="""<!DOCTYPE HTML>
 {table_html}
 </div>
 
-<div id="static_site_index_js_index">
+<div id="static_site_index_js_index" style="display:none;visibility:hidden;">
 {angular_template}
 </div>
 

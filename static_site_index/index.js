@@ -32,4 +32,8 @@ angular.element(document).ready(function () {
   // Remove the static HTML index.
   var frameid = document.getElementById("static_site_index_html_index");
   frameid.parentNode.removeChild(frameid);
+
+  var frameid = document.getElementById("static_site_index_js_index");
+  frameid.style.display="block";
+  frameid.style.visibility="visible";
 });
