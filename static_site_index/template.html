@@ -1,27 +1,27 @@
-<section ng-app="app" ng-controller="MainCtrl">
+<section data-ng-app="app" data-ng-controller="MainCtrl">
   <table class="table table-responsive table-condensed table-striped">
     <thead>
       <tr>
         <th></th>
         <th>
-          <a href="#" ng-click="orderByField='name'; reverseSort = !reverseSort">
-            Name <span ng-show="orderByField == 'name'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+          <a href="#" data-ng-click="orderByField='name'; reverseSort = !reverseSort">
+            Name <span data-ng-show="orderByField == 'name'"><span data-ng-show="!reverseSort">^</span><span data-ng-show="reverseSort">v</span></span>
           </a>
         </th>
         <th>
-          <a href="#" ng-click="orderByField='lastmodified'; reverseSort = !reverseSort">
-            Last Modified <span ng-show="orderByField == 'lastmodified'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+          <a href="#" data-ng-click="orderByField='lastmodified'; reverseSort = !reverseSort">
+            Last Modified <span data-ng-show="orderByField == 'lastmodified'"><span data-ng-show="!reverseSort">^</span><span data-ng-show="reverseSort">v</span></span>
           </a>
         </th>
         <th>
-          <a href="#" ng-click="orderByField='size'; reverseSort = !reverseSort">
-          Size <span ng-show="orderByField == 'size'"><span ng-show="!reverseSort">^</span><span ng-show="reverseSort">v</span></span>
+          <a href="#" data-ng-click="orderByField='size'; reverseSort = !reverseSort">
+          Size <span data-ng-show="orderByField == 'size'"><span data-ng-show="!reverseSort">^</span><span data-ng-show="reverseSort">v</span></span>
           </a>
         </th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="file in data.files|orderBy:orderByField:reverseSort">
+      <tr data-ng-repeat="file in data.files|orderBy:orderByField:reverseSort">
         <td><i class="fa fa-{{file.fa_name}} fa-fw"></i></td>
         <td><a href="{{file.link}}">{{file.name}}</a></td>
         <td>{{file.lastmodified | humanDate:'yyyy-MM-dd HH:mm:ss'}}</td>

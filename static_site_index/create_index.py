@@ -18,6 +18,7 @@ TEMPLATE="""<!DOCTYPE HTML>
 <html>
  <head>
   <title>Index of {pathname}</title>
+  <meta charset="utf-8">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -62,7 +63,7 @@ def get_html_table_buf(html_elements):
     tab_fmt = ('<tr>'
                '<td data-faname={fa_name}><i class="fa fa-{fa_name} fa-fw"></i></td>'
                '<td><a href="{link}">{name}</a></td>'
-               '<td data-mtime={lastmodified}>{lastmodified_human}</td>'
+               '<td data-mtime="{lastmodified}">{lastmodified_human}</td>'
                '<td>{size}</td>'
                '</tr>')
 
