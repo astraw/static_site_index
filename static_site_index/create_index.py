@@ -27,7 +27,7 @@ TEMPLATE="""<!DOCTYPE HTML>
   <div class="container-fluid">
 
    <div class="row">
-    <div class="col-md-6 col-md-offset-3">
+    <div class="text-center">
      <h1>Index of {pathname}</h1>
     </div>
    </div>
