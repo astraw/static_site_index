@@ -8,7 +8,7 @@ static_site_index is hosted at [github.com/astraw/static_site_index](https://git
 
 Similar software:
 
-* Rufus Pollock's [S3 bucket listing](https://github.com/rgrp/s3-bucket-listing)  (for S3 only)
+* Rufus Pollock's [S3 bucket listing](https://github.com/rgrp/s3-bucket-listing)
 
 ## Features
 
