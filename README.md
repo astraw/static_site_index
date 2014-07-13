@@ -2,7 +2,7 @@
 
 `static_site_index` builds directory index pages for static sites. It
 replaces functionality provided by [Apache's mod_autoindex](http://httpd.apache.org/docs/trunk/mod/mod_autoindex.html)
-and [Nginx's AutoIndex Module](http://wiki.nginx.org/NginxHttpAutoindexModule) by producing a static index.html page. Because it requires no server-side processing beyond serving the static index.html page, it is compatible with hosting such as [Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/dev/HowDoIWebsiteConfiguration.html).
+and [Nginx's AutoIndex Module](http://nginx.org/en/docs/http/ngx_http_autoindex_module.html) by producing a static index.html page. Because it requires no server-side processing beyond serving the static index.html page, it is compatible with hosting such as [Amazon S3](http://docs.aws.amazon.com/AmazonS3/latest/dev/HowDoIWebsiteConfiguration.html).
 
 static_site_index is hosted at [github.com/astraw/static_site_index](https://github.com/astraw/static_site_index).
 
