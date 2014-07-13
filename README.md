@@ -8,8 +8,7 @@ static_site_index is hosted at [github.com/astraw/static_site_index](https://git
 
 Similar software:
 
-* http://stackoverflow.com/questions/5897505/how-can-i-provide-directory-listings-for-those-viewing-my-amazon-s3-based-static
-* http://stackoverflow.com/questions/9253512/directory-listing-in-s3-static-website
+* Rufus Pollock's [S3 bucket listing](https://github.com/rgrp/s3-bucket-listing)  (for S3 only)
 
 ## Features
 
