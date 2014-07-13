@@ -142,7 +142,10 @@ def make_index(parent_link,pathname,jekyll=False,recursive=True):
         elements.append(el)
     write_index('index.html',elements,parent_link,pathname,jekyll=jekyll)
 
-def do_index(filesystem_dirname, parent_link, this_url_path,jekyll=False,recursive=True):
+def do_index(filesystem_dirname, parent_link=None, this_url_path=None,
+             jekyll=False, recursive=True):
+    if this_url_path is None:
+        this_url_path = '/'
     orig_dir = os.path.abspath(os.curdir)
     os.chdir( filesystem_dirname )
     try:
@@ -156,4 +159,4 @@ if __name__=='__main__':
     print('create_index called from command line')
     BASE_DIR = sys.argv[1]
     print('  BASE_DIR = %r'%BASE_DIR)
-    do_index(BASE_DIR,None,'/')
+    do_index(BASE_DIR)
