@@ -1,6 +1,7 @@
 from distutils.core import setup
 
 setup(name='static_site_index',
+      description='builds directory index pages for static websites',
       version='0.1.0',
       packages=['static_site_index',
                 ],
